@@ -9,12 +9,16 @@ import com.services.IOperationsBank;
 public class OPerationsBankImpl implements IOperationsBank {
 	
 	//the maximum amount that can be withdrawn
-	public static double WITH_DRAWAL_CEILING = 2000;
+	private static double WITH_DRAWAL_CEILING = 2000;
 	
-	public static double TOTAL_AMOUNT_OF_THE_ACCOUNT = 4000;
+	private static double TOTAL_AMOUNT_OF_THE_ACCOUNT = 4000;
 
 	public boolean withdrawal(Double amount) {
-		throw new UnsupportedOperationException("this fonction it's not disponible.");
+		if(amount < 0 || amount > TOTAL_AMOUNT_OF_THE_ACCOUNT || amount > WITH_DRAWAL_CEILING){
+			return false;
+		}
+		TOTAL_AMOUNT_OF_THE_ACCOUNT = TOTAL_AMOUNT_OF_THE_ACCOUNT - amount;
+		return true;
 	}
 
 	public boolean deposit(Double amount) {
@@ -22,7 +26,7 @@ public class OPerationsBankImpl implements IOperationsBank {
 	}
 
 	public Double getMontantOfAccount() {
-		throw new UnsupportedOperationException("this fonction it's not disponible.");
+		return TOTAL_AMOUNT_OF_THE_ACCOUNT;
 	}
-
+	
 }

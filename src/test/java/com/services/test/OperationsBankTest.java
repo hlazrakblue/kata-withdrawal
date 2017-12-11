@@ -43,9 +43,12 @@ public class OperationsBankTest {
 	
 	@Test
 	public void doTestAmountInfOfAmountExistInAccountAndInfOfAutorized(){
+		double amountOfAccountBeforeWithdrawal = operationsBank.getMontantOfAccount();
 		double withdrawal = 500;
 		boolean result = operationsBank.withdrawal(withdrawal);
 		Assert.assertTrue(result);
+		double amountOfAccountAfterWithrawal = operationsBank.getMontantOfAccount();
+		Assert.assertEquals((amountOfAccountBeforeWithdrawal - 500), amountOfAccountAfterWithrawal, 0.1);
 	}
 	
 }
